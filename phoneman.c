@@ -21,7 +21,7 @@ struct TblNode //散列表数据结构
     int TableSize;
     PtrToLNode heads; //指向每个key对应的值里面的列表的头节点
 };
-Position Find(HashTable H, ElementType Key)
+Position Find(HashTable H, ElementType Key)     //线性探测
 {
     Position P;
     int Pos;
@@ -63,7 +63,7 @@ HashTable CreateTable(int TableSize) //创建哈希表
     HashTable H;
     int i;
     H = (HashTable)malloc(sizeof(struct TblNode));
-    H->TableSize = NextPrime(TableSize);
+    H->TableSize = NextPrime(TableSize);    //  确定哈希表规模
     H->heads = (PtrToLNode)malloc(H->TableSize * sizeof(struct LNode)); //分配链表头节点数组
     for (i = 0; i < H->TableSize; i++)
     {
