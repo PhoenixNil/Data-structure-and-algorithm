@@ -15,7 +15,7 @@ void main()
     while (1);
 }
 
-P3_sign() interrupt 3
+void P3_sign() interrupt 3
 {
     p3_0 = !p3_0;
     TH1 = 0xfe;

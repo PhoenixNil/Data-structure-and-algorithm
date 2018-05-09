@@ -13,7 +13,7 @@ void main()
     while (1);
 }
 
-P3_sign() interrupt 1
+void P3_sign() interrupt 1
 {
     p3_0 = !p3_0;
 }
