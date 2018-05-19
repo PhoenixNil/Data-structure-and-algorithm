@@ -2,7 +2,7 @@
 #include <reg52.h>
 sbit wei = P2 ^ 6;  //申明段选
 sbit duan = P2 ^ 7; //位选
-unsigned char number[] = {0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07, 0x7f, 0x6f};
+unsigned char code number[]={0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71}; //0-9段码显示
 unsigned char second, minute, hour, count, hour_1, hour_2, minute_1, minute_2, second_1, second_2;
 void delayms(unsigned int x)
 {
@@ -27,7 +27,7 @@ void init() //状态初始化 时分秒，中断计数，开启中断
 void display()
 {
     duan = 1;
-    P0 = number[hour_2];
+    P0 = number[second_1];
     duan = 0;
     P0 = 0xff; //消影，下面的0xff都是这个作用
     wei = 1;
@@ -36,7 +36,7 @@ void display()
     delayms(1);
 
     duan = 1;
-    P0 = number[hour_1];
+    P0 = number[second_1];
     duan = 0;
     P0 = 0xff;
     wei = 1;
