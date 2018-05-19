@@ -27,7 +27,7 @@ void init() //状态初始化 时分秒，中断计数，开启中断
 void display()
 {
     duan = 1;
-    P0 = number[second_1];
+    P0 = number[hour_2];
     duan = 0;
     P0 = 0xff; //消影，下面的0xff都是这个作用
     wei = 1;
@@ -36,7 +36,7 @@ void display()
     delayms(1);
 
     duan = 1;
-    P0 = number[second_1];
+    P0 = number[hour_1];
     duan = 0;
     P0 = 0xff;
     wei = 1;
@@ -63,7 +63,7 @@ void display()
     delayms(1);
 
     duan = 1;
-    P0 = number[hour_2];
+    P0 = number[minute_2];
     duan = 0;
     P0 = 0xff;
     wei = 1;
@@ -72,7 +72,7 @@ void display()
     delayms(1);
 
     duan = 1;
-    P0 = number[hour_1];
+    P0 = number[minute_1];
     duan = 0;
     P0 = 0xff;
     wei = 1;
