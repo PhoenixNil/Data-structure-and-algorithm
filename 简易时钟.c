@@ -63,7 +63,7 @@ void display()
     delayms(1);
 
     duan = 1;
-    P0 = number[minute_2];
+    P0 = number[second_2];
     duan = 0;
     P0 = 0xff;
     wei = 1;
@@ -72,7 +72,7 @@ void display()
     delayms(1);
 
     duan = 1;
-    P0 = number[minute_1];
+    P0 = number[second_1];
     duan = 0;
     P0 = 0xff;
     wei = 1;
@@ -84,10 +84,11 @@ void display()
 void main()
 {
     init();
-    while (1);
-    display();
+    while (1)
+    {
+    display();      
+    }
 }
-
 void timer0() interrupt 1
 {
     TH0 = (65536 - 50000) / 256;
