@@ -55,7 +55,7 @@ void main()
             if (key1 == 0)      //再次按下0重新计时
             {
                 flag = 1;
-                player = 0;
+                player = 1;
                 while (!key1);
                 TR0 = ~TR0;
             }
