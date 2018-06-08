@@ -30,7 +30,7 @@ void display(unsigned int hour, unsigned int minute, unsigned second)
     duan = 0;
     P0 = 0xff; //消影，下面的0xff都是这个作用
     wei = 1;
-    P0 = 0xfe; //位选数码管  最右边的数码管
+    P0 = 0xfe; //位选数码管  最左边的数码管
     wei = 0;
     delayms(2);
 

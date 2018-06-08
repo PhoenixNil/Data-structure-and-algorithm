@@ -1,12 +1,11 @@
 #include <reg52.h>
 unsigned int k, c, flag = 0;
 sbit left_r = P1 ^ 0;
-sbit left_g = P1 ^ 1;
-sbit left_y = P1 ^ 2;
-
+sbit left_g = P1 ^ 2;
+sbit left_y = P1 ^ 1;
 sbit right_r = P3 ^ 5;
-sbit right_g = P3 ^ 6;
-sbit right_y = P3 ^ 7;
+sbit right_g = P3 ^ 7;
+sbit right_y = P3 ^ 6;
 
 void main()
 {
@@ -21,45 +20,43 @@ void main()
         if (flag)
         {
             flag = 0;
-            if (k > 119)
-                k = 0;
-            else
-                k++;
-            if (k <= 57)
+            if (c > 119)
+                c = 0;
+            if (c <= 57)
             {
-                left_g = 0;
-                right_r = 0;
-                left_r = 1;
-                left_y = 1;
-                right_y = 1;
-                right_g = 1;
+                left_g = 1;
+                right_r = 1;
+                left_r = 0;
+                left_y = 0;
+                right_y = 0;
+                right_g = 0;
             }
             else if (c > 57 && c < 59)
             {
-                left_y = 0;
-                right_y = 0;
-                left_g = 1;
-                left_r = 1;
-                right_g = 1;
-                right_r = 1;
-            }
-            else if (c > 59 && c < 117)
-            {
+                left_y = 1;
+                right_y = 1;
+                left_g = 0;
                 left_r = 0;
                 right_g = 0;
-                left_g = 1;
-                left_y = 1;
-                right_r = 1;
-                right_y = 1;
+                right_r = 0;
             }
-            else if (c > 117)
+            else if (c >= 59 && c < 117)
             {
-                left_y = 0;
-                right_y = 0;
-                left_g = 1;
                 left_r = 1;
                 right_g = 1;
-                right_r = 1;
+                left_g = 0;
+                left_y = 0;
+                right_r = 0;
+                right_y = 0;
+            }
+            else if (c >= 117)
+            {
+                left_y = 1;
+                right_y = 1;
+                left_g = 0;
+                left_r = 0;
+                right_g = 0;
+                right_r = 0;
             }
         }
     }
@@ -69,9 +66,10 @@ void T1_time() interrupt 1
     TH0 = (65536 - 50000) / 256;
     TL0 = (65536 - 50000) % 256;
     k++;
-    if (k > 5)
+    if (k > 20)
     {
         k = 0;
         flag = 1;
+        c++;
     }
 }
