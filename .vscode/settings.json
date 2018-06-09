@@ -27,5 +27,5 @@
         "-std=c++17",
         "-Wall"
     ],
-    "clang.completion.enable":false // 效果稍好，但太卡，故关掉
+    "clang.completion.enable":true // 效果稍好，但太卡，故关掉
 }
