@@ -16,35 +16,35 @@ struct Graph
 };
 int PathCount[MaxSize] = {0}; //路径条数
 int people[MaxSize] = {0};    //救援队伍人数
-// int EXTRACT_Min(LGraph G, int dist[], bool collect[])
-// {
-//     int u, i, Mindist = inf;
+int EXTRACT_Min(LGraph G, int dist[], bool collect[])
+{
+    int u, i, Mindist = inf;
 
-//     for (i = 0; i < G->NV; i++)
-//     {
+    for (i = 0; i < G->NV; i++)
+    {
 
-//         if (dist[i] < Mindist && collect[i] == false) //i未被收录，且i的距离更小
-//         {
-//             Mindist = dist[i];
-//             u = i;
-//         }
-//     }
+        if (dist[i] < Mindist && collect[i] == false) //i未被收录，且i的距离更小
+        {
+            Mindist = dist[i];
+            u = i;
+        }
+    }
 
-//     if (Mindist < inf)
-//         return u;
-//     else
-//         return -1; //这样的点不存在
-// }
+    if (Mindist < inf)
+        return u;
+    else
+        return -1; //这样的点不存在
+}
 
 void dijkstra(LGraph G, int dist[], int PathCount[], int C1, int team[]) //dist是离C1各下标最近距离,PathCount则为路径数
 {
-    int j, u, i, Mindist;
+    int j, u, i;
     bool collect[MaxSize];
     for (i = 0; i < G->NE; i++)
-        //  {
-        //      dist[i] = G->L[C1][i];
+    {
+        dist[i] = G->L[C1][i];
         collect[i] = false;
-    //  }
+    }
 
     dist[C1] = 0;
     people[C1] = team[C1];
@@ -52,17 +52,8 @@ void dijkstra(LGraph G, int dist[], int PathCount[], int C1, int team[]) //dist�
 
     while (1)
     {
-        Mindist = inf;
-        for (i = 0; i < G->NV; i++)
-        {
-            if (dist[i] < Mindist && collect[i] == false) //i未被收录，且i的距离更小
-            {
-                Mindist = dist[i];
-                u = i;
-            }
-        }
-        // u = EXTRACT_Min(G, dist, collect);
-        if (Mindist == inf)
+        u = EXTRACT_Min(G, dist, collect);
+        if (u == -1)
             break;
         collect[u] = true;
         for (j = 0; j < G->NV; j++)
@@ -78,7 +69,7 @@ void dijkstra(LGraph G, int dist[], int PathCount[], int C1, int team[]) //dist�
                 else if (dist[j] == dist[u] + G->L[u][j]) //权值相等，路径数相加
                 {
                     PathCount[j] += PathCount[u];
-                    if (people[j] < team[u] + team[j])
+                    if (people[j] < people[u] + team[j])
                         people[j] = people[u] + team[j];
                 }
             }
@@ -99,10 +90,10 @@ int main(int argc, char const *argv[])
         dist[i] = inf;
         for (j = 0; j < G->NV; j++)
         {
-            // if (i == j)
-            //     G->L[i][j] = 0;
-            // else
-            G->L[i][j] = inf;
+            if (i == j)
+                G->L[i][j] = 0;
+            else
+                G->L[i][j] = inf;
         }
     }
 
