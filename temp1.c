@@ -1,7 +1,7 @@
 #include <stdio.h>
 #define Null -1
 #define MaxTree 10
-struct TreeNode 
+struct TreeNode
 {
     char Element;
     int left;
@@ -15,33 +15,33 @@ int construction(struct TreeNode T[]) //构造树
     scanf(" %d\n", &N);
     for (i = 0; i < N; i++)
         store[i] = 0;
-        for (i = 0; i < N; i++)
+    for (i = 0; i < N; i++)
+    {
+        scanf("%c %c %c\n", &T[i].Element, &cl, &cr);
+        if (cl != '-')
         {
-            scanf("%c %c %c\n", &T[i].Element, &cl, &cr);
-            if (cl != '-')
-            {
-                T[i].left = cl - '0';
-                z = T[i].left;
-                store[z] = 1;
-            }
-            else
-                T[i].left = Null;
-            if (cr != '-')
-            {
-                T[i].right = cr - '0';
-                z = T[i].right;
-                store[z] = 1;
-            }
-            else
-                T[i].right = Null;
+            T[i].left = cl - '0';
+            z = T[i].left;
+            store[z] = 1;
         }
-        for (i = 0; i < N; i++)
-            if (!store[i])
-                    break;
-                Root = i;
+        else
+            T[i].left = Null;
+        if (cr != '-')
+        {
+            T[i].right = cr - '0';
+            z = T[i].right;
+            store[z] = 1;
+        }
+        else
+            T[i].right = Null;
+    }
+    for (i = 0; i < N; i++)
+        if (!store[i])
+            break;
+    Root = i;
     return Root;
 }
-/* int CompareTree(int R1, int R2)
+int CompareTree(int R1, int R2)
 {
     if (R1 == Null && R2 == Null)
         return 1;
@@ -58,15 +58,15 @@ int construction(struct TreeNode T[]) //构造树
     else
         return (CompareTree(T1[R1].left, T2[R1].right) &&
                 CompareTree(T1[R1].right, T2[R2].left));
-} */
+}
 int main()
 {
     int shu1, shu2;
     shu1 = construction(T1); //构造树,并且是根!
     shu2 = construction(T2);
-   /*  if (CompareTree(shu1, shu2)) //比较树
+    if (CompareTree(shu1, shu2)) //比较树
         printf("Yes\n");
     else
-        printf("NO\n"); */
+        printf("NO\n");
     return 0;
 }

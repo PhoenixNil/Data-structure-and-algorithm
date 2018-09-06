@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include<stdlib.h>
 void merge(int A[], int TempA[], int start, int mid, int last) /*合并两个序列,
 从start到左边界，从mid到终点*/
 {
