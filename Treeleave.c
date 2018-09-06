@@ -8,7 +8,7 @@ typedef struct BiTNode
 } BiTNode, *BinTree;
 BinTree construction()
 {
-    char cl,cr;
+    char cl,cr,ch;
     BinTree T;
     scanf("%c %c", &cl,&cr);
     if (ch != '-')
