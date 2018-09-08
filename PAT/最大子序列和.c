@@ -1,3 +1,4 @@
+// real_sum是关键，为-1的情况是为了只有0其他的值为负的
 #include <stdio.h>
 #define MAX 100000
 int main(int argc, char const *argv[])
