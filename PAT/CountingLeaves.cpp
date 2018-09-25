@@ -1,4 +1,4 @@
-// BFS遍历每一层,找到叶子节点记录下来
+// BFS遍历每一层,找到叶子节点记录下来，需要一个记录层的信息，放在结构体中，所有子节点都放在一个vec中
 #include <algorithm>
 #include <iostream>
 #include <queue>

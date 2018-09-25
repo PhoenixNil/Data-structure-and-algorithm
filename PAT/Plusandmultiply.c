@@ -4,14 +4,21 @@
 typedef struct PolyNode *Polynormial; //定义结构体变量
 struct PolyNode
 {
-    int coef;         //多项式的系数
+    float coef;       //多项式的系数
     int expon;        //多项式的指数
     Polynormial Next; //指针域
 };
 typedef Polynormial List;
-List ReadPoly() //读取多项式
+
+void Free(List L)
 {
-    int N, c, e, i;
+    free(L);
+}
+
+List ReadPoly() //读取多项式，需要使用尾指针来创建链表
+{
+    int N, e, i;
+    float c;
     List P, tail, temp;
     P = (List)malloc(sizeof(struct PolyNode)); //链表头空接点
     P->Next = NULL;
@@ -19,7 +26,7 @@ List ReadPoly() //读取多项式
     scanf("%d", &N);
     for (i = 0; i < N; i++)
     {
-        scanf("%d %d", &c, &e);
+        scanf("%d %f", &e, &c);
         List L = (List)malloc(sizeof(struct PolyNode)); //每次输入数据都需要空间
         L->coef = c;
         L->expon = e;
@@ -35,7 +42,7 @@ List ReadPoly() //读取多项式
 
 List add(List R1, List R2)
 {
-    List  head, R3, L1, L2;
+    List head, R3, L1, L2;
     L1 = R1->Next;
     L2 = R2->Next;
     R3 = (List)malloc(sizeof(struct PolyNode));
@@ -76,34 +83,63 @@ List add(List R1, List R2)
         R3 = R3->Next;
         L2 = L2->Next;
     }
-        R1 = NULL;
-        R2 = NULL;
+    R1 = NULL;
+    R2 = NULL;
     return head;
 }
 
-// List mult(list T1, List T2)
-// {
+List mult(List T1, List T2) //先相乘，建链表，然后再排序，排序后再删除
+{
+    List R3, head, R1, R2, tail, result = NULL;
+    result = (List)malloc(sizeof(struct PolyNode));
+    result->Next = NULL;
 
-// }
+    for (R1 = T1; R1 != NULL; R1 = R1->Next)
+    {
+        head = (List)malloc(sizeof(struct PolyNode));
+        head->Next = NULL;
+        tail = head; //开始时，尾指针=头指针
+        for (R2 = T2; R2 != NULL; R2 = R2->Next)
+        {
+            R3 = (List)malloc(sizeof(struct PolyNode)); //申请内存空间
+            R3->expon = R1->expon + R2->expon;
+            R3->coef = R1->coef * R2->coef;
+            R3->Next = NULL;
+            tail->Next = R3; //将R3插入到链表末尾
+            tail = R3;       //每插入一个数据，将尾指针向后移
+        }
+        result = add(result, head);
+        // 可以通过加来进行排序
+    }
+    return result;
+}
 
 void PrintPoly(List f1) //打印链表
 {
-    int flag = 0;
+    int flag = 0, count = -1;
+    List t1 = f1;
     if (!f1)
     {
         printf("0 0\n");
         return;
     }
+    while (t1)
+    {
+      count = count + 1;
+      t1 = t1->Next;
+    }
+    printf("%d", count);
     while (f1)
     {
         if (!flag)
             flag = 1;
         else
+        {
             printf(" ");
-        printf("%d %d", f1->coef, f1->expon);
+            printf("%d %.1f", f1->expon, f1->coef);
+        }
         f1 = f1->Next;
     }
-    printf("\n");
 }
 
 int main() //需要定义mult函数、ReadPolu函数、PrintfPoly函数、add函数
@@ -111,9 +147,10 @@ int main() //需要定义mult函数、ReadPolu函数、PrintfPoly函数、add函
     List P1, P2, PP, PS;
     P1 = ReadPoly();
     P2 = ReadPoly();
-    // PS = mult(P1, P2); //P1和P2的乘
-    PP = add(P1, P2); //P1和P2的加
-    // PrintPoly(PS);
-    PrintPoly(PP);
+    PS = mult(P1, P2); //P1和P2的乘
+    // PP = add(P1, P2); //P1和P2的加
+    PrintPoly(PS);
+    // PrintPoly(PP);
+    Free(PS);
     return 0;
 }
