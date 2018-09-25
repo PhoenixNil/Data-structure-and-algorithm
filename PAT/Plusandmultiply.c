@@ -125,8 +125,8 @@ void PrintPoly(List f1) //打印链表
     }
     while (t1)
     {
-      count = count + 1;
-      t1 = t1->Next;
+        count = count + 1;
+        t1 = t1->Next;
     }
     printf("%d", count);
     while (f1)
@@ -135,8 +135,7 @@ void PrintPoly(List f1) //打印链表
             flag = 1;
         else
         {
-            printf(" ");
-            printf("%d %.1f", f1->expon, f1->coef);
+            printf(" %d %.1f", f1->expon, f1->coef);
         }
         f1 = f1->Next;
     }
@@ -154,3 +153,4 @@ int main() //需要定义mult函数、ReadPolu函数、PrintfPoly函数、add函
     Free(PS);
     return 0;
 }
+// 存在乘积为零的情况，为0时，输出为0.但是不知怎么改进
