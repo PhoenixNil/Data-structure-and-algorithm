@@ -4,19 +4,19 @@
 #include <iostream>
 #define max 2001
 using namespace std;
-
 int main(int argc, char const *argv[])
 {
     int N, M, i, student[max], j;
-    int ID[max][5], flag;
-    int check[max], rank[max], temp[max][4], temp2[max][4], min[max][4] = {0};
+    int score[max][4], flag;
+    string check[max], ID[max];
+    int rank[max], temp[max][4], temp2[max][4], min[max][4] = {0}; //temp2存放的是每个ID的每个科目的名次
     char course[4] = {'C', 'M', 'E', 'A'};
     cin >> N >> M; //五个学生成绩，6个学生查阅
 
     for (i = 0; i < N; i++)
     {
-        cin >> ID[i][0] >> ID[i][1] >> ID[i][2] >> ID[i][3];
-        ID[i][4] = (ID[i][1] + ID[i][2] + ID[i][3]) / 3;
+        cin >> ID[i] >> score[i][0] >> score[i][1] >> score[i][2];
+        score[i][3] = (score[i][0] + score[i][1] + score[i][2]) / 3;
     }
     // for (i = 0; i < M; i++)
     // {
@@ -25,14 +25,14 @@ int main(int argc, char const *argv[])
     for (i = 0; i < N; i++)
 
     {
-        temp[i][0] = ID[i][1];
-        temp[i][1] = ID[i][2];
-        temp[i][2] = ID[i][3];
-        temp[i][3] = ID[i][4];
+        temp[i][0] = score[i][0];
+        temp[i][1] = score[i][1];
+        temp[i][2] = score[i][2];
+        temp[i][3] = score[i][3];
     }
 
     // 对每门成绩进行排序
-    for (j = 1; j < 5; j++) //对后四列进行升序排序
+    for (j = 0; j < 4; j++) //对后四列进行升序排序
     {
         //对第j列进行排序
         int m, n;
@@ -41,40 +41,39 @@ int main(int argc, char const *argv[])
         {
             for (n = m + 1; n < N; n++)
             {
-                if (ID[m][j] < ID[n][j])
+                if (score[m][j] < score[n][j])
                 {
-                    t = ID[n][j];
-                    ID[n][j] = ID[m][j];
-                    ID[m][j] = t;
+                    t = score[n][j];
+                    score[n][j] = score[m][j];
+                    score[m][j] = t;
                 }
             }
         }
     }
-
-    //找到最好成绩
+    // 原来的成绩
     for (i = 0; i < N; i++)
     {
         for (j = 0; j < N; j++)
         {
-            if (ID[j][1] == temp[i][0])
+            if (score[j][0] == temp[i][0])
             {
                 min[i][0] += 1;
                 if (min[i][0] == 1)
                     temp2[i][0] = j + 1;
             }
-            if (ID[j][2] == temp[i][1])
+            if (score[j][1] == temp[i][1])
             {
                 min[i][1] += 1;
                 if (min[i][1] == 1)
                     temp2[i][1] = j + 1;
             }
-            if (ID[j][3] == temp[i][2])
+            if (score[j][2] == temp[i][2])
             {
                 min[i][2] += 1;
                 if (min[i][2] == 1)
                     temp2[i][2] = j + 1;
             }
-            if (ID[j][4] == temp[i][3])
+            if (score[j][3] == temp[i][3])
             {
                 min[i][3] += 1;
                 if (min[i][3] == 1)
@@ -82,7 +81,7 @@ int main(int argc, char const *argv[])
             }
         }
     }
-
+    //找到最好成绩
     for (i = 0; i < N; i++)
     {
         rank[i] = temp2[i][3];
@@ -109,10 +108,11 @@ int main(int argc, char const *argv[])
         flag = 0;
         for (j = 0; j < N; j++)
         {
-            if (check[i] == ID[j][0])
+            if (check[i] == ID[i])
             {
                 cout << rank[i] << ' ' << course[student[i] - 1] << '\n';
                 flag = 1;
+                break;
             }
         }
         if (flag == 0)
@@ -124,7 +124,7 @@ int main(int argc, char const *argv[])
     cin >> check[M - 1];
     for (j = 0; j < N; j++)
     {
-        if (check[M - 1] == ID[j][0])
+        if (check[M - 1] == ID[i])
         {
             cout << rank[i] << ' ' << course[student[i] - 1];
         }
