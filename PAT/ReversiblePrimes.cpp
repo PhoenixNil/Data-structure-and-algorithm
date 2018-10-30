@@ -6,7 +6,7 @@ using namespace std;
 bool isPrime(int number)
 {
     int i, K;
-    if (number == 0)
+    if (number <= 1)
         return false;
     K = sqrt(number);
     for (i = 2; i <= K; i++)
