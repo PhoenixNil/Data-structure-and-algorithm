@@ -67,7 +67,7 @@ void InOrder(Tree T)
 	}
 }
 
-void AfterOrder(Tree T) /*如果该节点访问过了，可以直接输出，或者该节点的左子树和有子树都访问过了，也可以直接输出，
+void PostOrder(Tree T) /*如果该节点访问过了，可以直接输出，或者该节点的左子树和有子树都访问过了，也可以直接输出，
 	 				使用标志位flag 来确定左节点是否访问*/
 {
 	Tree S[100], pre; //K为当前节点，pre为当前节点的前驱节点，或者为NULL
@@ -121,7 +121,7 @@ int main()
 		InOrder(T);
 		break;
 	case 'c':
-		AfterOrder(T);
+		PostOrder(T);
 		break;
 	default:
 		break;
