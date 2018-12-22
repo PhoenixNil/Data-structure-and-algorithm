@@ -1,5 +1,4 @@
 {
-    "editor.fontFamily": "更纱黑体 SC",
     "files.trimTrailingWhitespace": true, // 保存时，删除每一行末尾的空格
     "files.defaultLanguage": "c", // ctrl+N新建文件后默认的语言
     "code-runner.runInTerminal": true, // 设置成false会在“输出”中输出，无法交互
@@ -26,5 +25,6 @@
         "-Wall"
     ],
     "clang.completion.enable": true ,// 效果稍好，但太卡，故关掉
-    "editor.fontSize": 15
+    "editor.fontSize": 16,
+    "python.linting.enabled": true
 }
