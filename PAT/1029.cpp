@@ -13,7 +13,7 @@ int main()
 {
     int n1, n2, temp, mid, i, count = 0, result = 0, flag = 0;
     scanf("%d", &n1);
-    a[n1 + 1] = Max;
+    a[n1 + 1] = Max;        //在第一个while循环避免出现temp大于第一个数组所有的数
     for (i = 1; i <= n1; i++) //从1开始输入，所以是小于等于
         scanf("%d", &a[i]);
     scanf("%d", &n2);
