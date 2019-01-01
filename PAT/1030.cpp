@@ -11,20 +11,16 @@ int M, N;
 queue<int> temp;
 vector<vector<int>> path(max);
 bool visit[max];
-int d[max];
-int lost[max];
+int d[max],lost[max];
 struct Gnode
 {
     int length;
     int Cost;
 } G[max][max];
-
 void BFS(int S)
 {
-    int i;
-    int pre;
+    int i,pre;
     d[S] = 0;
-    // path[S].push_back(0);
     temp.push(S);
     path[S].push_back(S);
     while (!temp.empty())
@@ -32,10 +28,8 @@ void BFS(int S)
         pre = temp.front();
         visit[pre] = true;
         temp.pop();
-
         for (i = 0; i < N; i++)
         {
-
             if (G[pre][i].length != 0)
             {
                 if (visit[i] == false)
@@ -77,9 +71,7 @@ int main(int argc, char const *argv[])
     }
     BFS(S);
     for (auto &&i : path[D])
-        // cout << i << " ";
-        printf("%d ", i);
-    // cout << d[D] << " " << lost[D];
+        cout << i << " ";
     printf("%d %d", d[D], lost[D]);
     return 0;
 }
