@@ -25,6 +25,7 @@ int main()
         cin >> tempaddress >> number[tempaddress].value >> number[tempaddress].Next;
         number[tempaddress].address = tempaddress;
     }
+    // 有可能数据根本不在链表中，所以要剔除
     for (i = headnode; i != -1; i = number[i].Next)
     {
         result.push_back(number[i]);
