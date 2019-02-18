@@ -30,9 +30,8 @@ int main()
         cout << "1=1";
     else
     {
-        temp = sqrt(N); //找到从1-sqrt(N)的所有因子
         cout << N << "=";
-        for (i = 0; Prime[i] <= temp && N >=2; i++)
+        for (i = 0;N>=2; i++)   //N==1说明分解完毕
         {
             flag = false;
             cnt2 = 0;                 //指数
