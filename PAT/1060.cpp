@@ -105,8 +105,6 @@ int main()
         {
             cout << resultA[i];
         }
-
-        // 从开始到N，输出result里面的数for(0toN)
         cout << '*' << 10 << '^' << exp1;
     }
     else
