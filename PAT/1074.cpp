@@ -45,6 +45,5 @@ int main()
             it->next = (it + 1)->address;
         cout << it->address << " " << it->data << " " << it->next << endl;
     }
-
     return 0;
 }
