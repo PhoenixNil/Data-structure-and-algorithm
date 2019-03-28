@@ -16,11 +16,10 @@ int compute(int source)
     while (!temp.empty())
     {
         pre = temp.front();
-        // visit[pre] = true;
         temp.pop();
         for (i = 0; i < v[pre].size(); i++)
         {
-            if (visit[v[pre][i]] == false && (level[pre] < L))
+            if (visit[v[pre][i]] == false && (level[pre] < L)) //该节点层数小于L
             {
                 level[v[pre][i]] = level[pre] + 1;
                 temp.push(v[pre][i]);
@@ -31,7 +30,6 @@ int compute(int source)
     }
     return result;
 }
-
 int main()
 {
     int i, j, K, temp2, result, m;
