@@ -57,7 +57,7 @@ int main()
 				}
 			}
 			k = k * 2;
-			for (i = 0; i < N / k; i++)
+			for (i = 0; i < N / k; i++) //精髓，需要复习
 				sort(A + i * k, A + (i + 1) * k);
 			sort(A + N / k * k, A + N);
 		}
