@@ -26,7 +26,7 @@ void KMP(string T, string P) //string在c++是类
 {
     int n, m, q, i;
     int *pi;
-    int flag;
+    int flag=0;
     n = T.length();
     m = P.length();
     pi = compute_prefix(P); //计算前缀函数，即接下来的偏移量
@@ -49,7 +49,7 @@ void KMP(string T, string P) //string在c++是类
         cout << "no find";
     }
 
-    delete (pi);
+    delete [] pi;
 }
 
 int main(int argc, char const *argv[])
